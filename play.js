@@ -8,6 +8,11 @@ const conn = net.createConnection({
   port : 50541,       //PORT nmuber here
 }); 
 
+//to handle incoming data
+conn.on("data",(data) => {
+ console.log("Message from Server:", data);
+});
+
 //interpret incoming data as text
 conn.setEncoding('utf-8');
 return conn;
