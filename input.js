@@ -21,3 +21,6 @@ if (data === '\u0003') {
 };
 
 setupInput(); //calling the function
+
+//module export
+module.exports = {setupInput }
