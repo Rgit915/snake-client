@@ -17,4 +17,6 @@ const connect = function () {
   conn.setEncoding('utf-8');
   return conn;
   };
-  module.exports = connect;
+
+  //Export connect function using ES6 shorthand syntax
+  module.exports = {connect};
