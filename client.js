@@ -12,7 +12,8 @@ const connect = function () {
   conn.on("connect",() =>{
     console.log("Successfully connected to game server");
     conn.write("Name: RA");  // send my Initials'RA' to server upon connection
-  })
+    conn.write("Move: up");  // send the 'Move: up" command to the server
+  });
   
   //to handle incoming data
   conn.on("data",(data) => {
