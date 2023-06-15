@@ -6,7 +6,12 @@ const connect = function () {
   const conn = net.createConnection({
     host : "localhost", // IP address     
     port : 50541,       //PORT nmuber here
-  }); 
+  });
+
+  //connect event triggered on a connection asap successfully established
+  conn.on("connect",() =>{
+    console.log("Successfully connected to game server");
+  })
   
   //to handle incoming data
   conn.on("data",(data) => {
