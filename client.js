@@ -1,3 +1,6 @@
+//Import the 'net' module
+const net = require("net");
+
 //establishes a connection with the game server
 const connect = function () {
   const conn = net.createConnection({
@@ -14,4 +17,4 @@ const connect = function () {
   conn.setEncoding('utf-8');
   return conn;
   };
-  
+  module.exports = connect;
