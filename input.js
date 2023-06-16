@@ -1,6 +1,10 @@
+//stores the active TCP connection object
+let connection;
+
 // setup interface to handle user input from stdin
 
-const setupInput = function () {
+const setupInput = function (conn) {
+  connection = conn;
   const stdin = process.stdin;
   stdin.setRawMode(true);
   stdin.setEncoding("utf8");
@@ -11,13 +15,24 @@ const setupInput = function () {
 
 //to processes the received user input
 
-const handleUserInput = function (data) {
+const handleUserInput = function (keypress) {
   // \u0003 maps to ctrl+C input
-if (data === '\u0003') {
+if (keypress === '\u0003') {
   process.exit();  //terminate the program if 'ctrl + C' keypress
 }
   //if other than 'ctrl + C' pressed ,process the user input
- console.log("Received input: ", data)
+ else if(keypress ==='w'|| keypress ==='W'){
+  connection.write('Move: up'); //send the command string to server
+ } else if (keypress ==='a'|| keypress ==='A'){
+  connection.write('Move: left');
+ } else if (keypress ==='s'|| keypress ==='S'){
+  connection.write('Move: down');
+ } else if (keypress ==='d'|| keypress ==='D'){
+  connection.write('Move: right');
+ } else{
+  console.log('Invalid Input', keypress );
+ }
+ 
 };
 
 setupInput(); //calling the function
