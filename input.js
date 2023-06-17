@@ -29,11 +29,23 @@ if (keypress === '\u0003') {
   connection.write('Move: down');
  } else if (keypress ==='d'|| keypress ==='D'){
   connection.write('Move: right');
- } else{
-  console.log('Invalid Input', keypress );
+ } else if (keypress ==='h' || keypress === 'H'){
+   sendCreativeMessage("Hey everyone!");
+ } else if (keypress ==='j' || keypress === 'j'){
+  sendCreativeMessage('love this game !');
+} else if (keypress ==='k' || keypress === 'K'){
+  sendCreativeMessage('Good luck!');
+} 
+  else{
+  console.log('Invalid Input', keypress);
  }
  
 };
+
+//Function to send a creative message to the server
+const sendCreativeMessage = function(myMessage){
+  connection.write(`Say:  ${myMessage}`);
+}
 
 setupInput(); //calling the function
 
