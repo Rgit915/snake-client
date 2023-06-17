@@ -1,11 +1,13 @@
 //Import the 'net' module
 const net = require("net");
 
+//import constant values module
+const {IP, PORT} = require("./constants");
 //establishes a connection with the game server
 const connect = function () {
   const conn = net.createConnection({
-    host : "localhost", // IP address     
-    port : 50541,       //PORT nmuber here
+    host: IP, // IP address     
+    port: PORT,       //PORT nmuber here
   });
 
   //connect event triggered on when a successful connection established
