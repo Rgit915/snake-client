@@ -8,7 +8,7 @@ const connect = function () {
     port : 50541,       //PORT nmuber here
   });
 
-  //connect event triggered on a connection asap successfully established
+  //connect event triggered on when a successful connection established
   conn.on("connect",() =>{
     console.log("Successfully connected to game server");
     conn.write("Name: RA");  // send my Initials'RA' to server upon connection
