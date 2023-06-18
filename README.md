@@ -9,7 +9,7 @@ Before you can run this client, you will need to be running the server side whic
 
 ## Final Product
 
-![screenshot of player Initials when the connection is successfully established](./Screenshot_Initials_Player.png)
+![Screenshot of player Initials on server when the connection is successfully established](./Server_display_Player_Initials.png)
 
 
 
