@@ -1,3 +1,13 @@
+//Import the constants and message mappings
+const {
+  MOVE_UP_KEY,
+  MOVE_LEFT_KEY,
+  MOVE_DOWN_KEY,
+  MOVE_RIGHT_KEY,
+  SEND_MESSAGE_KEY,
+  messageMappings,
+} = require('./constants');
+
 //stores the active TCP connection object
 let connection;
 
@@ -21,30 +31,30 @@ if (keypress === '\u0003') {
   process.exit();  //terminate the program if 'ctrl + C' keypress
 }
   //if other than 'ctrl + C' pressed ,process the user input
- else if(keypress ==='w'|| keypress ==='W'){
+ if(keypress === MOVE_UP_KEY || keypress.toLowerCase() === MOVE_UP_KEY.toLowerCase() ){
   connection.write('Move: up'); //send the command string to server
- } else if (keypress ==='a'|| keypress ==='A'){
+ } 
+ if (keypress === MOVE_LEFT_KEY || keypress.toLowerCase() === MOVE_LEFT_KEY.toLowerCase()){
   connection.write('Move: left');
- } else if (keypress ==='s'|| keypress ==='S'){
+ } 
+ if (keypress === MOVE_DOWN_KEY|| keypress.toLowerCase() === MOVE_DOWN_KEY.toLowerCase()){
   connection.write('Move: down');
- } else if (keypress ==='d'|| keypress ==='D'){
+ }
+ if (keypress === MOVE_RIGHT_KEY|| keypress.toLowerCase() === MOVE_RIGHT_KEY.toLowerCase()){
   connection.write('Move: right');
- } else if (keypress ==='h' || keypress === 'H'){
-   sendCreativeMessage("Hey everyone!");
- } else if (keypress ==='j' || keypress === 'j'){
-  sendCreativeMessage('love this game !');
-} else if (keypress ==='k' || keypress === 'K'){
-  sendCreativeMessage('Good luck!');
-} 
-  else{
-  console.log('Invalid Input', keypress);
+ }
+ if (keypress === SEND_MESSAGE_KEY || keypress.toLowerCase() === SEND_MESSAGE_KEY.toLowerCase()){
+   sendCreativeMessage(keypress);
  }
  
 };
 
 //Function to send a creative message to the server
-const sendCreativeMessage = function(myMessage){
-  connection.write(`Say:  ${myMessage}`);
+const sendCreativeMessage = function(keypress){
+  const myMessage = messageMappings[keypress]; //search the message in the mappings object
+  if(myMessage){
+  connection.write(`Say:  ${myMessage}`); // send the message to the server
+  }
 }
 
 setupInput(); //calling the function
