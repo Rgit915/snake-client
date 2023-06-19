@@ -1,12 +1,8 @@
 //Import the constants and message mappings
 const {
-  MOVE_UP_KEY,
-  MOVE_LEFT_KEY,
-  MOVE_DOWN_KEY,
-  MOVE_RIGHT_KEY,
-  SEND_MESSAGE_KEY,
+  movements,
   messageMappings,
-} = require('./constants');
+  } = require('./constants');
 
 //stores the active TCP connection object
 let connection;
@@ -31,20 +27,10 @@ if (keypress === '\u0003') {
   process.exit();  //terminate the program if 'ctrl + C' keypress
 }
   //if other than 'ctrl + C' pressed ,process the user input
- if(keypress === MOVE_UP_KEY || keypress.toLowerCase() === MOVE_UP_KEY.toLowerCase() ){
-  connection.write('Move: up'); //send the command string to server
- } 
- if (keypress === MOVE_LEFT_KEY || keypress.toLowerCase() === MOVE_LEFT_KEY.toLowerCase()){
-  connection.write('Move: left');
- } 
- if (keypress === MOVE_DOWN_KEY|| keypress.toLowerCase() === MOVE_DOWN_KEY.toLowerCase()){
-  connection.write('Move: down');
- }
- if (keypress === MOVE_RIGHT_KEY|| keypress.toLowerCase() === MOVE_RIGHT_KEY.toLowerCase()){
-  connection.write('Move: right');
- }
- if (keypress === SEND_MESSAGE_KEY || keypress.toLowerCase() === SEND_MESSAGE_KEY.toLowerCase()){
-   sendCreativeMessage(keypress);
+ if(keypress.toLowerCase() in movements){
+  connection.write(movements[keypress.toLowerCase()]); //send the command string to server
+ } else if (keypress.toLowerCase() in messageMappings){
+   sendCreativeMessage(keypress.toLowerCase());
  }
  
 };
